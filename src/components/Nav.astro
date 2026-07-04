@@ -11,23 +11,23 @@ const isActive = (href: string) => pathname === href || pathname === `${href}/`;
 ---
 
 <header class="sticky top-0 z-50 border-b border-hairline bg-bg/85 backdrop-blur">
-  <nav class="container-site flex h-14 items-center justify-between gap-3" aria-label="Main">
+  <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 px-3 sm:px-6" aria-label="Main">
     <a
       href="/"
-      class="flex items-center gap-2.5 font-mono text-[0.78rem] font-medium tracking-[0.18em] uppercase transition-colors hover:text-beacon"
+      class="flex items-center gap-2.5 font-mono text-[0.72rem] font-medium tracking-[0.14em] uppercase transition-colors hover:text-beacon sm:text-[0.78rem] sm:tracking-[0.18em]"
     >
       <span class="beacon-dot" aria-hidden="true"></span>
       <span class="hidden md:inline">Agentic Control Suite</span>
       <span class="md:hidden">ACS</span>
     </a>
-    <div class="flex items-center gap-0.5 font-mono text-[0.72rem] tracking-[0.08em] uppercase sm:gap-2">
+    <div class="flex items-center font-mono text-[0.62rem] tracking-[0.02em] uppercase sm:gap-2 sm:text-[0.72rem] sm:tracking-[0.08em]">
       {
         links.map(({ href, label }) => (
           <a
             href={href}
             aria-current={isActive(href) ? "page" : undefined}
             class:list={[
-              "px-1.5 py-1.5 transition-colors hover:text-beacon sm:px-2",
+              "px-1 py-1.5 transition-colors hover:text-beacon sm:px-2",
               isActive(href) ? "text-beacon" : "text-muted",
             ]}
           >
@@ -37,7 +37,7 @@ const isActive = (href: string) => pathname === href || pathname === `${href}/`;
       }
       <a
         href="https://github.com/MahdiHedhli"
-        class="px-1.5 py-1.5 text-muted transition-colors hover:text-beacon sm:px-2"
+        class="px-1 py-1.5 text-muted transition-colors hover:text-beacon sm:px-2"
       >
         GitHub
       </a>
