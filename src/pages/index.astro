@@ -1,0 +1,182 @@
+---
+import Base from "../layouts/Base.astro";
+import ProductCard from "../components/ProductCard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Badge from "../components/Badge.astro";
+
+const posture = [
+  {
+    term: "Fail-closed",
+    body: "Deny by default; an unverified or missing clearance means no action.",
+  },
+  {
+    term: "Operator-in-the-loop",
+    body: "A human clears every privileged step.",
+  },
+  {
+    term: "Hardware-backed approval",
+    body: "Clearances are signed by a key rooted in your device's secure hardware.",
+  },
+  {
+    term: "Least authority",
+    body: "Each clearance is scoped to a specific capability.",
+  },
+  {
+    term: "Auditable & open",
+    body: "Every request and decision is logged, and the core protocol is open source. A security model you can't inspect isn't one you should trust.",
+  },
+];
+---
+
+<Base
+  title="Agentic Control Suite — Give agents hands. Hold the keys."
+  description="AI agents can now take real action. The Agentic Control Suite lets them, while keeping a human in the loop for every consequential step. One signing authority. Cryptographic clearances. Fail-closed by default."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-hairline">
+    <div class="grid-backdrop absolute inset-0" aria-hidden="true"></div>
+    <div
+      class="pointer-events-none absolute top-1/2 -right-56 hidden h-[620px] w-[620px] -translate-y-1/2 lg:block"
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 620 620" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full opacity-60">
+        <circle cx="310" cy="310" r="300" stroke="#1E2733" stroke-width="1"></circle>
+        <circle cx="310" cy="310" r="225" stroke="#1E2733" stroke-width="1"></circle>
+        <circle cx="310" cy="310" r="150" stroke="#1E2733" stroke-width="1"></circle>
+        <circle cx="310" cy="310" r="75" stroke="#1E2733" stroke-width="1"></circle>
+        <line x1="310" y1="10" x2="310" y2="610" stroke="#1E2733" stroke-width="1"></line>
+        <line x1="10" y1="310" x2="610" y2="310" stroke="#1E2733" stroke-width="1"></line>
+        <circle cx="310" cy="310" r="4" fill="#F5A623"></circle>
+        <circle cx="415" cy="205" r="3" fill="#F5A623" opacity="0.85"></circle>
+        <circle cx="205" cy="400" r="3" fill="#F5A623" opacity="0.55"></circle>
+        <circle cx="475" cy="390" r="3" fill="#F5A623" opacity="0.35"></circle>
+      </svg>
+      <div class="radar-sweep opacity-70"></div>
+    </div>
+
+    <div class="container-site relative py-24 sm:py-32">
+      <h1 class="flex items-center gap-3 font-mono text-[0.8rem] font-medium tracking-[0.24em] uppercase text-beacon">
+        <span class="beacon-dot" aria-hidden="true"></span>
+        Agentic Control Suite
+      </h1>
+      <p class="mt-6 max-w-3xl text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
+        Give agents hands. <span class="text-beacon">Hold the keys.</span>
+      </p>
+      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-muted">
+        AI agents can now take real action — operating infrastructure, browsing the web, recovering systems. The
+        Agentic Control Suite lets them, while keeping a human in the loop for every consequential step. One signing
+        authority. Cryptographic clearances. Fail-closed by default.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="#products" class="btn btn-primary">Explore the suite</a>
+        <a href="https://github.com/MahdiHedhli" class="btn btn-secondary">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The model -->
+  <section class="border-b border-hairline">
+    <div class="container-site py-20 sm:py-28">
+      <SectionHeading kicker="// The model" title="One tower, many aircraft." />
+      <div class="mt-10 grid items-start gap-12 lg:grid-cols-[1fr_auto]">
+        <div class="max-w-2xl">
+          <p class="text-base leading-relaxed text-muted sm:text-lg">
+            A single control tower (ACT) is the only thing that can sign and approve a privileged action. Every product
+            in the suite is an aircraft: it must obtain a signed clearance from the tower before it acts. Approvals
+            happen on your phone, backed by your device's secure hardware. Nothing privileged happens without a signed,
+            operator-approved clearance — and everything is logged.
+          </p>
+          <p class="mt-10"><span class="stamp">■ Cleared · TWR</span></p>
+        </div>
+
+        <svg
+          viewBox="0 0 360 300"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full max-w-sm justify-self-center font-mono lg:justify-self-end"
+          role="img"
+          aria-label="Diagram: ACT, the control tower, signs clearances for AgenticKVM, BrowserBridge, and future products before they act."
+        >
+          <!-- tower -->
+          <path d="M180 34 L196 66 L164 66 Z" stroke="#F5A623" stroke-width="1.5"></path>
+          <circle cx="180" cy="24" r="4" fill="#F5A623"></circle>
+          <rect x="128" y="66" width="104" height="30" stroke="#1E2733" fill="#111721"></rect>
+          <text x="180" y="85" text-anchor="middle" fill="#E6EDF3" font-size="11" letter-spacing="2">ACT · TWR</text>
+          <!-- spokes -->
+          <line x1="120" y1="200" x2="166" y2="100" stroke="#1E2733"></line>
+          <line x1="180" y1="200" x2="180" y2="100" stroke="#1E2733"></line>
+          <line x1="240" y1="200" x2="194" y2="100" stroke="#1E2733"></line>
+          <text x="132" y="146" fill="#F5A623" font-size="9" letter-spacing="1" transform="rotate(-64 132 146)"
+            >signed ✓</text
+          >
+          <!-- aircraft nodes -->
+          <rect x="66" y="200" width="108" height="30" stroke="#1E2733" fill="#111721"></rect>
+          <text x="120" y="219" text-anchor="middle" fill="#8B949E" font-size="10" letter-spacing="1.5">KVM</text>
+          <rect x="126" y="248" width="108" height="30" stroke="#1E2733" fill="#111721"></rect>
+          <text x="180" y="267" text-anchor="middle" fill="#8B949E" font-size="10" letter-spacing="1.5">BRIDGE</text>
+          <rect x="186" y="200" width="108" height="30" stroke="#1E2733" stroke-dasharray="4 4" fill="#111721"></rect>
+          <text x="240" y="219" text-anchor="middle" fill="#8B949E" font-size="10" letter-spacing="1.5" opacity="0.7"
+            >REMOTE</text
+          >
+          <line x1="180" y1="230" x2="180" y2="248" stroke="#1E2733"></line>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="border-b border-hairline">
+    <div class="container-site py-20 sm:py-28">
+      <SectionHeading kicker="// The suite" title="Products" />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <ProductCard
+          callsign="ACS-TWR"
+          title="Agentic Control Tower"
+          badge="Open source · Mobile beta"
+          blurb="The signing authority for the entire suite."
+          href="/act"
+        />
+        <ProductCard
+          callsign="ACS-KVM"
+          title="AgenticKVM"
+          badge="Open source · Beta"
+          blurb="Out-of-band infrastructure control for AI agents."
+          href="/agentickvm"
+        />
+        <ProductCard
+          callsign="ACS-BRB"
+          title="BrowserBridge"
+          badge="Beta · Coming to the Chrome Web Store"
+          blurb="Secure AI co-browsing — the agent drives, you clear the turns."
+          href="/browserbridge"
+        />
+      </div>
+      <div
+        class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 border border-dashed border-hairline px-6 py-5"
+      >
+        <Badge label="In design" />
+        <p class="text-sm text-muted">
+          <span class="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-ink">On the horizon</span>
+          — AgenticRemote: in-band remote control for agent-operated systems.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security posture -->
+  <section>
+    <div class="container-site py-20 sm:py-28">
+      <SectionHeading kicker="// Why it's built this way" title="The security posture" />
+      <dl class="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+        {
+          posture.map(({ term, body }) => (
+            <div class="border-l-2 border-beacon/70 pl-5">
+              <dt class="font-mono text-[0.78rem] font-medium tracking-[0.16em] uppercase text-ink">{term}</dt>
+              <dd class="mt-2 text-sm leading-relaxed text-muted">{body}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+</Base>

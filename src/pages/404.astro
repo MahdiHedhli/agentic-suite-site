@@ -1,0 +1,20 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="404 — no route filed | Agentic Control Suite"
+  description="This path has no filed flight plan. Return to the Agentic Control Suite tower."
+>
+  <section class="relative overflow-hidden">
+    <div class="grid-backdrop absolute inset-0" aria-hidden="true"></div>
+    <div class="container-site relative flex min-h-[60vh] flex-col items-start justify-center py-24">
+      <p class="stamp">■ Clearance denied</p>
+      <h1 class="mt-8 font-mono text-6xl font-medium tracking-tight text-ink sm:text-7xl">404</h1>
+      <p class="mt-4 max-w-md text-base leading-relaxed text-muted">
+        No route filed for this path. Whatever you were looking for, it hasn't been cleared for landing here.
+      </p>
+      <a href="/" class="btn btn-secondary mt-10">Return to tower</a>
+    </div>
+  </section>
+</Base>

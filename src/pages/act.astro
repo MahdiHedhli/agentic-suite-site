@@ -1,0 +1,98 @@
+---
+import Base from "../layouts/Base.astro";
+import Badge from "../components/Badge.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const steps = [
+  "An agent requests a clearance for a specific action.",
+  "ACT classifies the action's risk and routes an approval to your device.",
+  "You approve with a tap — your phone signs the clearance with a hardware-backed key.",
+  "The requesting product verifies the signed clearance before it acts. No valid clearance, no action.",
+  "Every request and decision is recorded.",
+];
+
+const properties = [
+  "Single signing authority",
+  "Fail-closed defaults",
+  "Hardware-backed operator approval",
+  "Capability-scoped clearances",
+  "Full audit trail",
+];
+---
+
+<Base
+  title="Agentic Control Tower (ACT) — the signing authority | Agentic Control Suite"
+  description="ACT is the control tower of the Agentic Control Suite — the single authority where privileged actions are gated, clearances are cryptographically signed, and you approve or deny from your phone."
+>
+  <section class="relative overflow-hidden border-b border-hairline">
+    <div class="grid-backdrop absolute inset-0" aria-hidden="true"></div>
+    <div class="container-site relative py-20 sm:py-28">
+      <p class="kicker">// ACS-TWR · Control tower</p>
+      <div class="mt-4 flex flex-wrap items-center gap-4">
+        <h1 class="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">Agentic Control Tower</h1>
+        <Badge label="Open source · Mobile beta" />
+      </div>
+      <p class="mt-6 text-xl text-beacon sm:text-2xl">The signing authority for the entire suite.</p>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+        ACT is the control tower — the single, irreducible authority every other product routes through. It's where
+        privileged actions are gated, where clearances are cryptographically signed, and where you approve or deny,
+        from your phone.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-hairline">
+    <div class="container-site py-20 sm:py-24">
+      <SectionHeading kicker="// Sequence" title="How it works" />
+      <ol class="mt-12 max-w-2xl">
+        {
+          steps.map((step, i) => (
+            <li class="relative border-l border-hairline pb-10 pl-8 last:border-transparent last:pb-0">
+              <span
+                class="absolute top-0 -left-4 flex h-8 w-8 items-center justify-center border border-hairline bg-surface font-mono text-[0.7rem] font-medium text-beacon"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p class="pt-1 text-base leading-relaxed text-ink">{step}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="border-b border-hairline">
+    <div class="container-site py-20 sm:py-24">
+      <SectionHeading kicker="// Guarantees" title="Properties" />
+      <ul class="mt-10 flex flex-wrap gap-3" role="list">
+        {
+          properties.map((p) => (
+            <li class="border border-hairline bg-surface px-4 py-2 font-mono text-[0.75rem] tracking-[0.1em] uppercase text-ink">
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="container-site py-20 sm:py-24">
+      <div class="grid gap-10 md:grid-cols-2">
+        <div>
+          <SectionHeading kicker="// Apps" title="Your approval device" />
+          <p class="mt-6 max-w-md text-base leading-relaxed text-muted">
+            iOS &amp; Android — approvals route to your phone, and every clearance is signed there, backed by the
+            device's secure hardware.
+          </p>
+        </div>
+        <div class="flex items-start md:justify-end">
+          <a href="https://github.com/MahdiHedhli/AgenticControlTower" class="btn btn-secondary">
+            View AgenticControlTower on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

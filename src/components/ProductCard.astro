@@ -1,0 +1,25 @@
+---
+import Badge from "./Badge.astro";
+
+interface Props {
+  callsign: string;
+  title: string;
+  badge: string;
+  blurb: string;
+  href: string;
+}
+
+const { callsign, title, badge, blurb, href } = Astro.props;
+---
+
+<a href={href} class="group hairline-card flex flex-col gap-4 p-6 transition-colors hover:border-beacon/60">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <span class="font-mono text-[0.7rem] tracking-[0.2em] text-muted">{callsign}</span>
+    <Badge label={badge} />
+  </div>
+  <h3 class="text-xl font-semibold tracking-tight">{title}</h3>
+  <p class="text-sm leading-relaxed text-muted">{blurb}</p>
+  <span class="mt-auto pt-2 font-mono text-[0.75rem] tracking-[0.12em] text-beacon">
+    → {href}<span class="sr-only"> — {title}</span>
+  </span>
+</a>
