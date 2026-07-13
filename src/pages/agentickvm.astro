@@ -4,6 +4,8 @@ import Badge from "../components/Badge.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import AgenticKVMDemo from "../components/AgenticKVMDemo.astro";
 import DemoTimeline from "../components/DemoTimeline.astro";
+import ProductShot from "../components/ProductShot.astro";
+import actApprovalDetail from "../assets/product/act-approval-detail.png";
 
 const useCases = [
   "Homelab recovery",
@@ -81,6 +83,25 @@ const useCases = [
           by hardware and environment.
         </p>
       </div>
+    </div>
+  </section>
+
+  <section class="border-b border-hairline">
+    <div class="container-site grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1fr)_auto]">
+      <div>
+        <SectionHeader
+          eyebrow="The real approval surface"
+          title="Node actions land on your phone."
+          sub="This is the actual ACT app reviewing a high-risk request on a demo workspace — the tool, the node, the session, a redacted payload, and an expiry. High-risk console, power, and boot actions for AgenticKVM arrive in exactly the same format."
+        />
+      </div>
+      <ProductShot
+        src={actApprovalDetail}
+        alt="The ACT iOS app reviewing a high-risk shell-command approval in a demo workspace: request summary with state, tool, agent, node, session and expiry, plus a redacted payload — KVM console, power, and boot requests arrive in the same format"
+        width={300}
+        caption="Actual app · demo workspace"
+        class="justify-self-center"
+      />
     </div>
   </section>
 

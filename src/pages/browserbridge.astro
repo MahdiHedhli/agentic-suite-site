@@ -4,6 +4,10 @@ import Badge from "../components/Badge.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import BrowserBridgeDemo from "../components/BrowserBridgeDemo.astro";
 import DemoTimeline from "../components/DemoTimeline.astro";
+import ProductShot from "../components/ProductShot.astro";
+import bbApproval from "../assets/product/bb-approval-pending-high-risk.png";
+import bbPanic from "../assets/product/bb-panic.png";
+import bbReady from "../assets/product/bb-ready-idle.png";
 
 const useCases = [
   "Booking and scheduling",
@@ -44,7 +48,41 @@ const useCases = [
     </div>
   </section>
 
-  <section class="border-y border-hairline bg-surface">
+  <section class="border-t border-hairline bg-surface">
+    <div class="container-site py-16 sm:py-24">
+      <SectionHeader
+        eyebrow="The real product"
+        title="The Control Tower popup, up close."
+        sub="These are the extension's actual UI states, rendered by the production popup — a pending high-risk approval, the fail-closed panic mode, and first-run setup."
+        align="center"
+      />
+      <div class="mt-12 grid items-start justify-items-center gap-8 lg:grid-cols-3">
+        <ProductShot
+          kind="panel"
+          src={bbApproval}
+          alt="BrowserBridge Control Tower popup showing a pending high-risk approval: the action, requesting runtime, origins, risk level, why approval is required, and a one-time decision notice"
+          width={420}
+          caption="A high-risk action, paused"
+        />
+        <ProductShot
+          kind="panel"
+          src={bbPanic}
+          alt="BrowserBridge panic mode: actions are blocked fail-closed, the target lease is revoked, and a recovery checklist walks the operator back to a safe state"
+          width={420}
+          caption="Panic — fail closed, recover deliberately"
+        />
+        <ProductShot
+          kind="panel"
+          src={bbReady}
+          alt="BrowserBridge first-run state: helper health is green and the operator is prompted to set a target tab before any governed browser action"
+          width={420}
+          caption="Setup — nothing moves without a target lease"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-hairline">
     <div class="container-site grid gap-12 py-16 sm:py-24 lg:grid-cols-2">
       <div>
         <SectionHeader

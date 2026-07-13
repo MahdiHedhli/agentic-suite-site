@@ -3,8 +3,12 @@ import Base from "../layouts/Base.astro";
 import Badge from "../components/Badge.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import ACTDemo from "../components/ACTDemo.astro";
-import ACTApprovalCard from "../components/ACTApprovalCard.astro";
 import StatusRail from "../components/StatusRail.astro";
+import ProductShot from "../components/ProductShot.astro";
+import actApprovalActions from "../assets/product/act-approval-actions.png";
+import actApprovalDetail from "../assets/product/act-approval-detail.png";
+import actHome from "../assets/product/act-home.png";
+import actAgents from "../assets/product/act-agents.png";
 
 const explains = [
   {
@@ -52,23 +56,13 @@ const explains = [
           <a href="https://github.com/MahdiHedhli/AgenticControlTower" class="btn btn-ghost">View on GitHub</a>
         </div>
       </div>
-      <div class="mx-auto w-full max-w-xs space-y-3">
-        <ACTApprovalCard
-          summary="Submit appointment form at clinics.example?"
-          action="Browser form submission"
-          risk="Medium"
-          scope="This form only"
-          expires="5 minutes"
-        />
-        <ACTApprovalCard
-          summary="Reboot pve01 via BMC?"
-          action="Power cycle"
-          risk="High"
-          scope="pve01 only"
-          expires="2 minutes"
-          status="approved"
-        />
-      </div>
+      <ProductShot
+        src={actApprovalActions}
+        alt="The ACT iOS app showing an approval request: a shell command with operator constraints — read-only first, ask again before writing, only this repo — and Approve and Deny buttons"
+        caption="Actual app · demo workspace"
+        width={330}
+        class="mx-auto"
+      />
     </div>
   </section>
 
@@ -83,6 +77,37 @@ const explains = [
       <StatusRail class="mt-10" />
       <div class="mt-14">
         <ACTDemo />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-hairline">
+    <div class="container-site py-16 sm:py-24">
+      <SectionHeader
+        eyebrow="The real app"
+        title="This is ACT, not a concept render."
+        sub="Screenshots from the ACT app running with a demo workspace: the tower dashboard, an approval with its redacted payload, and the agent fleet."
+        align="center"
+      />
+      <div class="mt-12 grid items-start justify-items-center gap-10 sm:grid-cols-3">
+        <ProductShot
+          src={actHome}
+          alt="ACT home screen: counts for agents, missions, approvals, notifications and security items, plus a pending high-risk approval card"
+          width={300}
+          caption="The tower at a glance"
+        />
+        <ProductShot
+          src={actApprovalDetail}
+          alt="ACT approval detail: request summary showing state, tool, agent, node, session and expiry, with a redacted payload"
+          width={300}
+          caption="Every request, in plain terms"
+        />
+        <ProductShot
+          src={actAgents}
+          alt="ACT agents screen: a fleet list with per-agent status chips such as running, online, and blocked"
+          width={300}
+          caption="Your fleet, live states included"
+        />
       </div>
     </div>
   </section>
