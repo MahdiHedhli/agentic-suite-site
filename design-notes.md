@@ -50,5 +50,10 @@ animation to a single instant run) rests each scene on its **completed** state.
 - No partnership claims: "integrates with / supports / adapter for / designed
   for / works with compatible environments."
 - No guarantees of recovery, safety, or universal hardware/browser support.
-- The promise is **controlled agency, not uncontrolled automation** — human
+- The promise is **controlled agency, not uncontrolled automation**: human
   approval must stay visible in every scene.
+- **No em dashes anywhere in site copy** (operator rule, 2026-07-13: "screams
+  AI generated"). Use periods, commas, colons, or a middot in chip/UI strings.
+- Titles and subtitles stay super simple and human. Plain words first;
+  technical depth belongs further down the page (expandables, Security,
+  Developers).

@@ -15,14 +15,14 @@ const { class: className } = Astro.props;
 <div class:list={["kvm-demo min-w-0 max-w-full", className]}>
   <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
     <!-- terminal: normal access failing -->
-    <DeviceFrame kind="console" label="Terminal showing ping and SSH to pve01 timing out" title="terminal — operator">
+    <DeviceFrame kind="console" label="Terminal showing ping and SSH to pve01 timing out" title="terminal · operator">
       <div class="console-text min-h-44 p-4 text-night-muted">
         <p class="text-night-ink">$ ping pve01</p>
         <p class="kvm-t1">Request timeout for icmp_seq 0</p>
         <p class="kvm-t2">Request timeout for icmp_seq 1</p>
         <p class="kvm-t3 mt-2 text-night-ink">$ ssh root@pve01</p>
         <p class="kvm-t4">ssh: connect to host pve01: Operation timed out</p>
-        <p class="kvm-t5 mt-2 text-[#f0b25e]">→ normal access is gone. Opening console…</p>
+        <p class="kvm-t5 mt-2 text-[#f0b25e]">→ no way in. Opening the console…</p>
       </div>
     </DeviceFrame>
 
@@ -30,7 +30,7 @@ const { class: className } = Astro.props;
     <DeviceFrame
       kind="console"
       label="PiKVM/BMC-style console: the agent observes the boot failure, gets ACT approval, and recovers the machine"
-      title="agentickvm — pve01 · PiKVM console"
+      title="agentickvm · pve01 · PiKVM console"
     >
       <div class="relative min-h-44 p-4">
         <div class="mb-3 flex flex-wrap items-center gap-2">
@@ -51,8 +51,8 @@ const { class: className } = Astro.props;
           <p class="kvm-c1">Booting kernel 6.8.4-3…</p>
           <p class="kvm-c2 text-[#f2a099]">ERROR: root device not found</p>
           <p class="kvm-c3 text-[#f2a099]">Dropped to emergency shell (initramfs)</p>
-          <p class="kvm-c4 mt-1 text-night-ink">agent: likely stale initramfs from last kernel update.</p>
-          <p class="kvm-c5 text-night-ink">agent: requesting approval to select previous kernel…</p>
+          <p class="kvm-c4 mt-1 text-night-ink">agent: looks like the kernel update broke boot.</p>
+          <p class="kvm-c5 text-night-ink">agent: asking permission to boot the old kernel…</p>
           <p class="kvm-c6 mt-1">→ approved · keys sent: ↑ ↑ Enter</p>
           <p class="kvm-c7">Booting kernel 6.8.4-2 (previous)…</p>
           <p class="kvm-c8 text-[#7ee2a0]">pve01 login: _</p>
@@ -80,7 +80,7 @@ const { class: className } = Astro.props;
 
   <p class="kvm-audit mt-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-night-hairline bg-night-surface px-3 py-1.5 text-[0.7rem] text-night-muted">
     <span class="console-text !text-[0.62rem]">03:12:44</span>
-    Recovered · incident summary written · every action recorded
+    Back online · summary written · every step recorded
   </p>
 </div>
 

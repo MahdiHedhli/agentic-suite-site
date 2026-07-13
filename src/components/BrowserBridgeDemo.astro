@@ -31,18 +31,18 @@ const { class: className } = Astro.props;
         <div class="min-w-0 space-y-2">
           <p class="text-[0.68rem] font-semibold tracking-[0.08em] text-muted uppercase">Available appointments</p>
           <div class="bb-r bb-r1 rounded-xl border border-hairline p-3">
-            <p class="text-[0.78rem] font-semibold">Northside Clinic — 4.1 mi</p>
+            <p class="text-[0.78rem] font-semibold">Northside Clinic · 4.1 mi</p>
             <p class="text-[0.7rem] text-muted">Tue 9:40 AM</p>
           </div>
           <div class="bb-r bb-r2 bb-picked relative rounded-xl border border-hairline p-3">
-            <p class="text-[0.78rem] font-semibold">Lakeview Health — 7.8 mi</p>
+            <p class="text-[0.78rem] font-semibold">Lakeview Health · 7.8 mi</p>
             <p class="text-[0.7rem] text-muted">Mon 8:15 AM · earliest</p>
             <span class="bb-pick-tag absolute -top-2 right-2 rounded-full bg-beacon px-2 py-0.5 text-[0.6rem] font-bold text-[#221503]"
               >Best match</span
             >
           </div>
           <div class="bb-r bb-r3 rounded-xl border border-hairline p-3">
-            <p class="text-[0.78rem] font-semibold">Central Care — 12.3 mi</p>
+            <p class="text-[0.78rem] font-semibold">Central Care · 12.3 mi</p>
             <p class="text-[0.7rem] text-muted">Wed 2:00 PM</p>
           </div>
         </div>
@@ -53,7 +53,7 @@ const { class: className } = Astro.props;
             <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <path d="m2.5 6.5 2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
             </svg>
-            Submitted — Mon 8:15 AM confirmed
+            Submitted · Mon 8:15 AM confirmed
           </div>
 
           <p class="text-[0.68rem] font-semibold tracking-[0.08em] text-muted uppercase">Booking form</p>
@@ -61,7 +61,7 @@ const { class: className } = Astro.props;
             [
               ["Full name", "Jordan Ellis", "bb-f1"],
               ["Phone", "(555) 014-2233", "bb-f2"],
-              ["Preferred time", "Mon 8:15 AM — Lakeview Health", "bb-f3"],
+              ["Preferred time", "Mon 8:15 AM · Lakeview Health", "bb-f3"],
             ].map(([field, value, cls]) => (
               <div class="mt-2.5">
                 <p class="text-[0.66rem] text-muted">{field}</p>
@@ -85,7 +85,7 @@ const { class: className } = Astro.props;
             <span class="bb-submit rounded-full bg-ink px-4 py-1.5 text-[0.75rem] font-semibold text-white">Submit</span>
             <span class="bb-pause inline-flex items-center gap-1.5 rounded-full bg-beacon/15 px-2.5 py-1 text-[0.66rem] font-semibold text-ember">
               <span class="status-dot bg-beacon" aria-hidden="true"></span>
-              Paused — waiting for your approval
+              Paused for your approval
             </span>
           </div>
         </div>

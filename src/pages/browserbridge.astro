@@ -22,8 +22,8 @@ const useCases = [
 ---
 
 <Base
-  title="BrowserBridge — let AI operate your browser safely | AgenticSuite"
-  description="BrowserBridge lets AI browse, click, compare, fill, and complete web tasks in your real browser — pausing for ACT approval before sensitive actions like submitting."
+  title="BrowserBridge: let AI use your browser, safely | AgenticSuite"
+  description="BrowserBridge lets AI search, click, and fill out web forms in your real browser. It pauses for your approval in ACT before anything sensitive, like submitting."
 >
   <section class="relative overflow-hidden">
     <div class="glow-field" aria-hidden="true"></div>
@@ -31,11 +31,11 @@ const useCases = [
       <div class="mx-auto max-w-3xl text-center">
         <Badge label="BrowserBridge · The browser operator · Public beta" tone="beta" />
         <h1 class="mt-6 text-4xl leading-[1.06] font-semibold tracking-tight text-balance sm:text-[3.4rem]">
-          Let AI operate your browser, safely.
+          Let AI use your browser, safely.
         </h1>
         <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          BrowserBridge gives agents hands in the browser — your real browser, your real session. AI can search, click,
-          compare, and fill the form. But you approve the submission.
+          BrowserBridge puts AI to work in your real browser, in your real session. It can search, click, compare, and
+          fill out the form. You approve the submission.
         </p>
         <div class="mt-8 flex flex-wrap justify-center gap-3.5">
           <a href="#demo" class="btn btn-primary">Watch it work</a>
@@ -53,7 +53,7 @@ const useCases = [
       <SectionHeader
         eyebrow="The real product"
         title="The Control Tower popup, up close."
-        sub="These are the extension's actual UI states, rendered by the production popup — a pending high-risk approval, the fail-closed panic mode, and first-run setup."
+        sub="Three of the extension's actual screens: a high-risk approval, panic mode, and first-run setup."
         align="center"
       />
       <div class="mt-12 grid items-start justify-items-center gap-8 lg:grid-cols-3">
@@ -69,14 +69,14 @@ const useCases = [
           src={bbPanic}
           alt="BrowserBridge panic mode: actions are blocked fail-closed, the target lease is revoked, and a recovery checklist walks the operator back to a safe state"
           width={420}
-          caption="Panic — fail closed, recover deliberately"
+          caption="Panic mode: everything stops until you recover it"
         />
         <ProductShot
           kind="panel"
           src={bbReady}
           alt="BrowserBridge first-run state: helper health is green and the operator is prompted to set a target tab before any governed browser action"
           width={420}
-          caption="Setup — nothing moves without a target lease"
+          caption="Setup: the agent only gets the tab you point it at"
         />
       </div>
     </div>
@@ -88,7 +88,7 @@ const useCases = [
         <SectionHeader
           eyebrow="How it feels"
           title="Hand AI the annoying website task."
-          sub="A Chrome extension plus a local companion. The agent works in the browser you already use — no handing over passwords, no giving up your session to a bot farm in the cloud."
+          sub="A Chrome extension plus a local companion. The agent works in the browser you already use. No handing over passwords, no shipping your session to a bot farm in the cloud."
         />
         <DemoTimeline
           class="mt-8"
@@ -96,7 +96,7 @@ const useCases = [
           steps={[
             "The agent opens the site and works through it like you would",
             "It searches, compares options, and fills the safe fields",
-            "Anything consequential — submit, purchase, delete — pauses",
+            "Anything big, like submit, purchase, or delete, pauses",
             "You approve from your phone",
             "The task finishes, and the whole run is recorded",
           ]}
@@ -112,8 +112,8 @@ const useCases = [
           }
         </ul>
         <p class="mt-6 text-sm leading-relaxed text-muted">
-          Sensitive actions are gated through signed, single-use approvals — a consequential step can't run without a
-          clearance you issued — and a panic control revokes in-flight authority where supported.
+          Sensitive actions need a signed, single-use approval. A big step can't run without a clearance you issued, and
+          a panic button revokes in-flight authority where supported.
         </p>
       </div>
     </div>
@@ -122,7 +122,7 @@ const useCases = [
   <section>
     <div class="container-site flex flex-wrap items-center justify-between gap-6 py-16 sm:py-20">
       <p class="max-w-lg text-lg font-medium text-balance">
-        AI can fill the form — <span class="text-ember">you approve the submission.</span>
+        AI can fill the form. <span class="text-ember">You approve the submission.</span>
       </p>
       <a href="https://github.com/MahdiHedhli" class="btn btn-ink">AgenticSuite on GitHub</a>
     </div>

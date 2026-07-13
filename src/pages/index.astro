@@ -56,7 +56,7 @@ const security = [
 ---
 
 <Base
-  title="AgenticSuite — AI agents that can actually do the work"
+  title="AgenticSuite: AI agents that can actually do the work"
   description="AgenticSuite gives AI controlled access to your browser, computers, servers, and workflows, with ACT approvals for the actions that matter."
 >
   <!-- ============ HERO ============ -->
@@ -95,7 +95,7 @@ const security = [
             <div class="space-y-2.5 bg-surface p-4">
               <p class="text-[0.68rem] font-semibold tracking-[0.08em] text-muted uppercase">Booking form</p>
               {
-                ["Jordan Ellis", "(555) 014-2233", "Mon 8:15 AM — Lakeview Health"].map((v) => (
+                ["Jordan Ellis", "(555) 014-2233", "Mon 8:15 AM · Lakeview Health"].map((v) => (
                   <div class="rounded-lg border border-hairline bg-bg/50 px-3 py-1.5 text-[0.74rem]">{v}</div>
                 ))
               }
@@ -113,7 +113,7 @@ const security = [
           <DeviceFrame
             kind="console"
             label="AgenticKVM console showing a server brought back online"
-            title="agentickvm — pve01"
+            title="agentickvm · pve01"
             class="float-soft-delay"
           >
             <div class="console-text space-y-1 p-4 text-night-muted">
@@ -188,7 +188,7 @@ const security = [
           name="BrowserBridge"
           subtitle="The browser operator"
           headline="Give AI your browser, not your trust."
-          copy="Let AI browse, click, compare, fill, and complete web tasks in your real browser — and pause before sensitive actions like submitting."
+          copy="Let AI browse, click, compare, fill, and complete web tasks in your real browser. It pauses before sensitive actions like submitting."
           credibility="Runs in your own session. Panic control revokes in-flight authority."
           href="/browserbridge"
           demoHref="#demo-browserbridge"
@@ -203,7 +203,7 @@ const security = [
                 portal.example/renewal
               </span>
             </div>
-            {["Account verified", "Form filled — 6 fields", "Compared 3 plan options"].map((t) => (
+            {["Account verified", "Form filled · 6 fields", "Compared 3 plan options"].map((t) => (
               <p class="flex items-center gap-2 text-[0.72rem] text-muted">
                 <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="text-ember">
                   <path d="m2.5 6.5 2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
@@ -221,7 +221,7 @@ const security = [
           name="AgenticKVM"
           subtitle="The out-of-band operator"
           headline="Operate beyond SSH."
-          copy="Give agents a controlled path to operate computers, servers, and VM hosts when normal access is not enough — through the same consoles an operator would use."
+          copy="Give agents a controlled path to operate computers, servers, and VM hosts when normal access is not enough. They use the same consoles an operator would."
           credibility="Adapters for PiKVM, Redfish, IPMI, and BMC-style consoles."
           href="/agentickvm"
           demoHref="#demo-agentickvm"
@@ -267,7 +267,7 @@ const security = [
               "Fills the safe fields",
               "Pauses before submission",
               "You approve from your phone",
-              "BrowserBridge submits — task complete, audit recorded",
+              "BrowserBridge submits. Task done, audit recorded",
             ]}
           />
         </div>
@@ -291,7 +291,7 @@ const security = [
               dark
               approvalIndex={3}
               steps={[
-                "Ping and SSH fail — normal access is gone",
+                "Ping and SSH fail. Normal access is gone",
                 "The agent opens a PiKVM/BMC console in observe mode",
                 "It reads the boot failure and identifies the likely cause",
                 "You approve the recovery action from your phone",
@@ -310,7 +310,7 @@ const security = [
           <p class="eyebrow">Demo · ACT</p>
           <h3 class="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Approve what matters from your phone.</h3>
           <p class="mt-3 text-muted">
-            Requests arrive as plain-English cards. You approve, modify, or deny — and every decision is recorded.
+            Requests arrive as plain-English cards. You approve, modify, or deny. Every decision is recorded.
           </p>
         </div>
         <ACTDemo />
@@ -365,12 +365,12 @@ const security = [
         </summary>
         <div class="border-t border-hairline px-6 py-5 text-sm leading-relaxed text-muted">
           <ul class="space-y-2">
-            <li><strong class="text-ink">Scoped clearances</strong> — each approval covers one capability, not blanket access.</li>
-            <li><strong class="text-ink">Signed approvals</strong> — decisions are cryptographically signed on your device.</li>
-            <li><strong class="text-ink">One-time use</strong> — a clearance is consumed by the action it was issued for.</li>
-            <li><strong class="text-ink">Provider-specific permissions</strong> — browser, console, and workflow surfaces each declare what they can do.</li>
-            <li><strong class="text-ink">Fail-closed behavior</strong> — a missing or unverified clearance means no action.</li>
-            <li><strong class="text-ink">Audit trail</strong> — requests, decisions, and actions are recorded for review.</li>
+            <li><strong class="text-ink">Scoped clearances:</strong> each approval covers one capability, not blanket access.</li>
+            <li><strong class="text-ink">Signed approvals:</strong> decisions are cryptographically signed on your device.</li>
+            <li><strong class="text-ink">One-time use:</strong> a clearance is consumed by the action it was issued for.</li>
+            <li><strong class="text-ink">Provider-specific permissions:</strong> browser, console, and workflow surfaces each declare what they can do.</li>
+            <li><strong class="text-ink">Fail-closed behavior:</strong> a missing or unverified clearance means no action.</li>
+            <li><strong class="text-ink">Audit trail:</strong> requests, decisions, and actions are recorded for review.</li>
           </ul>
         </div>
       </details>
@@ -402,7 +402,7 @@ const security = [
       <SectionHeader
         eyebrow="Security"
         title="Control is built in."
-        sub="AgenticSuite is designed around human approval, scoped permissions, and visible records. Control is not an afterthought — it is the product."
+        sub="AgenticSuite is designed around human approval, scoped permissions, and visible records. Control is not an afterthought. It is the product."
         align="center"
       />
       <ul class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

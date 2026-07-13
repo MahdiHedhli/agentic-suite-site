@@ -20,19 +20,19 @@ const useCases = [
 ---
 
 <Base
-  title="AgenticKVM — recover systems when normal access is gone | AgenticSuite"
-  description="AgenticKVM gives agents a controlled path through PiKVM, BMC, Redfish, IPMI, and VM host consoles — to see and operate machines when SSH, APIs, and browsers can't."
+  title="AgenticKVM: fix servers you can't reach | AgenticSuite"
+  description="AgenticKVM lets AI agents see and operate machines through PiKVM, BMC, and VM host consoles when SSH is down. Risky actions wait for your approval in ACT."
 >
   <section class="band-night relative overflow-hidden">
     <div class="container-site relative pt-16 pb-16 sm:pt-24">
       <div class="mx-auto max-w-3xl text-center">
         <Badge label="AgenticKVM · The out-of-band operator · Public beta" tone="beta" dark />
         <h1 class="mt-6 text-4xl leading-[1.06] font-semibold tracking-tight text-balance text-night-ink sm:text-[3.4rem]">
-          Recover systems when normal access is gone.
+          Fix servers you can't reach.
         </h1>
         <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-night-muted">
-          LLMs usually stop when SSH, APIs, or browser access fail. AgenticKVM gives them a controlled path to see and
-          operate the machine through the same recovery surfaces an operator would use.
+          Most AI agents give up when SSH is down. AgenticKVM can still see the screen and press the keys, through the
+          same console you would use. Anything risky waits for your OK.
         </p>
         <div class="mt-8 flex flex-wrap justify-center gap-3.5">
           <a href="#demo" class="btn btn-primary">Watch a recovery</a>
@@ -53,23 +53,23 @@ const useCases = [
         <SectionHeader
           eyebrow="From prompt to console"
           title="Eyes and hands at the console."
-          sub="When the machine won't answer, AgenticKVM works through out-of-band surfaces — PiKVM, BMC, Redfish, IPMI, iLO- and iDRAC-style controllers, and VM host consoles — in compatible environments you already control."
+          sub="When a machine stops answering, AgenticKVM goes in through the back door: PiKVM devices, BMC consoles, and VM host consoles. It speaks standards like Redfish and IPMI, and it works with gear you already own."
         />
         <DemoTimeline
           class="mt-8"
           approvalIndex={3}
           steps={[
-            "Ping and SSH fail — the normal paths are dead",
-            "The agent attaches to the console in observe mode",
-            "It reads the screen and diagnoses the failure",
-            "Keyboard, power, boot, and VM host actions wait for your approval",
-            "The approved action runs, the machine comes back",
-            "An incident summary lands in the audit trail",
+            "Ping fails, SSH fails. The normal ways in are gone",
+            "The agent opens the machine's console, watch-only",
+            "It reads the screen and works out what broke",
+            "You approve the fix from your phone",
+            "It presses the keys and the machine comes back",
+            "You get a written record of everything it did",
           ]}
         />
       </div>
       <div>
-        <SectionHeader eyebrow="Where it shines" title="Built for the moments dashboards can't reach." />
+        <SectionHeader eyebrow="Where it shines" title="For the day something breaks." />
         <ul class="mt-8 grid grid-cols-2 gap-3">
           {
             useCases.map((u) => (
@@ -78,9 +78,8 @@ const useCases = [
           }
         </ul>
         <p class="mt-6 text-sm leading-relaxed text-muted">
-          Observation and control are clearly separated: watching a console is one permission, touching keyboard,
-          power, or boot state is another — and the consequential ones always route through ACT. Compatibility varies
-          by hardware and environment.
+          Watching the console is one permission. Touching the keyboard, power, or boot settings is another, and those
+          always wait for your approval in ACT. Compatibility depends on your hardware and setup.
         </p>
       </div>
     </div>
@@ -92,12 +91,12 @@ const useCases = [
         <SectionHeader
           eyebrow="The real approval surface"
           title="Node actions land on your phone."
-          sub="This is the actual ACT app reviewing a high-risk request on a demo workspace — the tool, the node, the session, a redacted payload, and an expiry. High-risk console, power, and boot actions for AgenticKVM arrive in exactly the same format."
+          sub="This is the real ACT app reviewing a high-risk request on a demo workspace. You can see the tool, the machine, the session, and when the request expires. Console, power, and boot requests from AgenticKVM show up the same way."
         />
       </div>
       <ProductShot
         src={actApprovalDetail}
-        alt="The ACT iOS app reviewing a high-risk shell-command approval in a demo workspace: request summary with state, tool, agent, node, session and expiry, plus a redacted payload — KVM console, power, and boot requests arrive in the same format"
+        alt="The ACT iOS app reviewing a high-risk shell command approval in a demo workspace, with the request state, tool, agent, node, session, expiry, and a redacted payload. KVM console, power, and boot requests arrive in the same format."
         width={300}
         caption="Actual app · demo workspace"
         class="justify-self-center"
