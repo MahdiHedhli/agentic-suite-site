@@ -144,8 +144,9 @@ const { class: className } = Astro.props;
     10%, 15% { opacity: 1; transform: none; border-color: var(--color-hairline); box-shadow: none; }
     18%, 100% { opacity: 1; transform: none; border-color: var(--color-beacon); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-beacon) 18%, transparent); }
   }
-  .bb-pick-tag { animation: bb-pick-tag var(--d) linear infinite both; opacity: 0; }
-  @keyframes bb-pick-tag { 0%, 16% { opacity: 0; transform: scale(0.8); } 19%, 100% { opacity: 1; transform: none; } }
+  /* scale-only reveal: text/background never blend mid-animation (axe-safe) */
+  .bb-pick-tag { animation: bb-pick-tag var(--d) linear infinite both; transform: scale(0); }
+  @keyframes bb-pick-tag { 0%, 16% { transform: scale(0); } 19%, 100% { transform: scale(1); } }
 
   .bb-fill { clip-path: inset(0 100% 0 0); animation: bb-fill var(--d) linear infinite both; }
   /* fallback reveal for any .bb-fill without a per-element window */
