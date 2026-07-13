@@ -1,0 +1,35 @@
+---
+/** Prompt → Plan → Approval → Action → Audit rail */
+interface Props {
+  active?: number; // 0-based index to highlight; omit to highlight none
+  class?: string;
+}
+const { active, class: className } = Astro.props;
+const steps = ["Prompt", "Plan", "Approval", "Action", "Audit"];
+---
+
+<ol class:list={["flex flex-wrap items-center justify-center gap-y-2", className]} aria-label="How a task flows">
+  {
+    steps.map((step, i) => (
+      <li class="flex items-center">
+        <span
+          class:list={[
+            "rounded-full px-3.5 py-1.5 text-[0.8rem] font-semibold",
+            i === active
+              ? "bg-beacon text-[#221503]"
+              : i === 2
+                ? "border border-beacon/50 bg-beacon/10 text-ember"
+                : "border border-hairline bg-surface text-muted",
+          ]}
+        >
+          {step}
+        </span>
+        {i < steps.length - 1 && (
+          <svg width="26" height="8" viewBox="0 0 26 8" fill="none" aria-hidden="true" class="mx-1 text-hairline">
+            <path d="M0 4h22m0 0-3-3m3 3-3 3" stroke="currentColor" stroke-width="1.4" />
+          </svg>
+        )}
+      </li>
+    ))
+  }
+</ol>

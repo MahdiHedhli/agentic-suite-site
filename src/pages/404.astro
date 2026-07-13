@@ -2,19 +2,16 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base
-  title="404 — no route filed | Agentic Control Suite"
-  description="This path has no filed flight plan. Return to the Agentic Control Suite tower."
->
+<Base title="404 — page not found | AgenticSuite" description="This page doesn't exist. Head back to AgenticSuite.">
   <section class="relative overflow-hidden">
-    <div class="grid-backdrop absolute inset-0" aria-hidden="true"></div>
-    <div class="container-site relative flex min-h-[60vh] flex-col items-start justify-center py-24">
-      <p class="stamp">■ Clearance denied</p>
-      <h1 class="mt-8 font-mono text-6xl font-medium tracking-tight text-ink sm:text-7xl">404</h1>
-      <p class="mt-4 max-w-md text-base leading-relaxed text-muted">
-        No route filed for this path. Whatever you were looking for, it hasn't been cleared for landing here.
+    <div class="glow-field" aria-hidden="true"></div>
+    <div class="container-site relative flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
+      <p class="chip"><span class="chip-dot" aria-hidden="true"></span>Request denied · no such page</p>
+      <h1 class="mt-6 text-6xl font-semibold tracking-tight sm:text-7xl">404</h1>
+      <p class="mt-4 max-w-md text-muted">
+        Even our agents can't find this one — and there's no approval card that will make it exist.
       </p>
-      <a href="/" class="btn btn-secondary mt-10">Return to tower</a>
+      <a href="/" class="btn btn-ink mt-9">Back to AgenticSuite</a>
     </div>
   </section>
 </Base>

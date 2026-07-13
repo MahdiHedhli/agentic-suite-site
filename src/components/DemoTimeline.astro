@@ -1,0 +1,48 @@
+---
+/** Readable step list beside an animated demo — the no-motion path to understanding. */
+interface Props {
+  steps: string[];
+  approvalIndex?: number; // which step is the ACT approval moment
+  dark?: boolean;
+  class?: string;
+}
+const { steps, approvalIndex, dark = false, class: className } = Astro.props;
+---
+
+<ol class:list={["space-y-0", className]}>
+  {
+    steps.map((step, i) => (
+      <li
+        class:list={[
+          "relative border-l pb-5 pl-6 last:border-transparent last:pb-0",
+          dark ? "border-night-hairline" : "border-hairline",
+        ]}
+      >
+        <span
+          class:list={[
+            "absolute top-0.5 -left-[9px] h-[17px] w-[17px] rounded-full border-2",
+            i === approvalIndex
+              ? "border-beacon bg-beacon/20"
+              : dark
+                ? "border-night-hairline bg-night-surface"
+                : "border-hairline bg-surface",
+          ]}
+          aria-hidden="true"
+        />
+        <p class:list={["text-[0.92rem] leading-snug", dark ? "text-night-ink" : "text-ink"]}>
+          {step}
+          {i === approvalIndex && (
+            <span
+              class:list={[
+                "ml-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 align-middle text-[0.68rem] font-semibold",
+                dark ? "bg-beacon/20 text-beacon" : "bg-beacon/15 text-ember",
+              ]}
+            >
+              ACT approval
+            </span>
+          )}
+        </p>
+      </li>
+    ))
+  }
+</ol>

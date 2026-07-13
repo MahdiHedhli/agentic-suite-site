@@ -1,0 +1,40 @@
+---
+import DeviceFrame from "./DeviceFrame.astro";
+import ACTApprovalCard from "./ACTApprovalCard.astro";
+
+/** Compact phone showing one ACT request — the recurring "approve from your phone" visual. */
+interface Props {
+  summary?: string;
+  action?: string;
+  risk?: "Low" | "Medium" | "High";
+  scope?: string;
+  expires?: string;
+  status?: "pending" | "approved";
+  label?: string;
+  class?: string;
+}
+
+const {
+  summary = "Agent requests permission to submit a browser form",
+  action = "Submit appointment form",
+  risk = "Medium",
+  scope = "clinics.example only",
+  expires = "5 minutes",
+  status = "pending",
+  label = "ACT phone approval: a request card with Approve, Modify, and Deny options",
+  class: className,
+} = Astro.props;
+---
+
+<DeviceFrame kind="phone" label={label} class={className}>
+  <div class="bg-bg px-3 pt-2 pb-4">
+    <div class="flex items-center justify-between px-1 pb-2">
+      <span class="flex items-center gap-1.5 text-[0.72rem] font-semibold">
+        <span class="beacon-dot !h-2 !w-2" aria-hidden="true"></span>ACT
+      </span>
+      <span class="text-[0.62rem] font-medium text-muted">1 request</span>
+    </div>
+    <ACTApprovalCard {summary} {action} {risk} {scope} {expires} {status} />
+    <p class="mt-3 px-1 text-[0.62rem] text-muted">Every decision is recorded in your audit trail.</p>
+  </div>
+</DeviceFrame>

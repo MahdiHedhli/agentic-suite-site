@@ -20,9 +20,20 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-beacon);
+  outline: 2px solid var(--color-ember);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 6px;
+}
+
+/* dark bands need a brighter ring (ember is only ~2.8:1 on night surfaces) */
+.band-night :focus-visible,
+.card-night :focus-visible {
+  outline-color: var(--color-beacon);
+}
+
+section[id],
+div[id] {
+  scroll-margin-top: 5rem;
 }
 
 .skip-link {
@@ -31,89 +42,147 @@ body {
   top: 0;
   z-index: 100;
   padding: 0.6rem 1rem;
-  background: var(--color-beacon);
-  color: var(--color-bg);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  background: var(--color-ink);
+  color: #fff;
+  border-radius: 9999px;
+  font-size: 0.85rem;
 }
 .skip-link:focus {
-  left: 0.5rem;
-  top: 0.5rem;
+  left: 0.75rem;
+  top: 0.75rem;
 }
 
-/* ---------- shared pieces ---------- */
+/* ---------- layout ---------- */
 .container-site {
-  max-width: 72rem;
+  max-width: 74rem;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
 
-.kicker {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+/* ---------- type helpers ---------- */
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-beacon);
+  color: var(--color-ember);
 }
 
+/* ---------- buttons & chips ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.6rem;
   border: 1px solid transparent;
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease,
-    color 150ms ease;
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+.btn:active {
+  transform: translateY(1px);
 }
 .btn-primary {
   background: var(--color-beacon);
-  color: var(--color-bg);
+  color: #221503;
+  box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--color-beacon) 65%, transparent);
 }
 .btn-primary:hover {
-  background: #ffbe4d;
+  background: #ffb84a;
 }
-.btn-secondary {
+.btn-ink {
+  background: var(--color-ink);
+  color: #ffffff;
+}
+.btn-ink:hover {
+  background: #2b303a;
+}
+.btn-ghost {
   border-color: var(--color-hairline);
+  background: var(--color-surface);
   color: var(--color-ink);
 }
-.btn-secondary:hover {
-  border-color: color-mix(in srgb, var(--color-beacon) 60%, transparent);
-  color: var(--color-beacon);
+.btn-ghost:hover {
+  border-color: color-mix(in srgb, var(--color-ink) 30%, transparent);
 }
 
-.hairline-card {
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-hairline);
+  background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.76rem;
+  font-weight: 550;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+.chip-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 9999px;
+  background: var(--color-beacon);
+  flex: none;
+}
+
+/* ---------- surfaces ---------- */
+.card {
   background: var(--color-surface);
   border: 1px solid var(--color-hairline);
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 2px rgba(22, 25, 31, 0.04);
 }
 
-/* "CLEARED" stamp treatment */
-.stamp {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--color-beacon);
-  border: 1.5px solid color-mix(in srgb, var(--color-beacon) 65%, transparent);
-  padding: 0.4rem 0.75rem 0.4rem 1.03rem;
-  transform: rotate(-3deg);
+.card-glass {
+  background: color-mix(in srgb, #ffffff 74%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid color-mix(in srgb, #ffffff 70%, var(--color-hairline));
+  border-radius: 1.5rem;
+  box-shadow: 0 24px 60px -30px rgba(22, 25, 31, 0.25);
 }
 
-/* pulsing beacon dot */
+.card-night {
+  background: var(--color-night-surface);
+  border: 1px solid var(--color-night-hairline);
+  border-radius: 1.5rem;
+  color: var(--color-night-ink);
+}
+
+/* dark contrast band */
+.band-night {
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, color-mix(in srgb, var(--color-beacon) 9%, transparent), transparent 60%),
+    var(--color-night);
+  color: var(--color-night-ink);
+}
+
+/* ---------- luminous hero backdrop ---------- */
+.glow-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(46rem 26rem at 18% 8%, color-mix(in srgb, var(--color-beacon) 13%, transparent), transparent 62%),
+    radial-gradient(40rem 24rem at 85% 16%, rgba(125, 155, 255, 0.12), transparent 60%),
+    radial-gradient(34rem 22rem at 55% 90%, rgba(255, 140, 120, 0.08), transparent 65%);
+}
+
+/* ---------- beacon dot (brand mark) ---------- */
 .beacon-dot {
   position: relative;
   display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.55rem;
+  height: 0.55rem;
   border-radius: 9999px;
   background: var(--color-beacon);
   flex: none;
@@ -125,12 +194,12 @@ body {
   border-radius: 9999px;
   border: 1px solid var(--color-beacon);
   opacity: 0;
-  animation: beacon-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation: beacon-ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 @keyframes beacon-ping {
   0% {
     transform: scale(0.5);
-    opacity: 0.8;
+    opacity: 0.7;
   }
   70%,
   100% {
@@ -139,34 +208,36 @@ body {
   }
 }
 
-/* faint console grid backdrop */
-.grid-backdrop {
-  background-image:
-    linear-gradient(var(--color-hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px);
-  background-size: 72px 72px;
-  opacity: 0.22;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 75%);
+/* ---------- shared motion ---------- */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.float-soft {
+  animation: float-y 7s ease-in-out infinite;
+}
+.float-soft-delay {
+  animation: float-y 7s ease-in-out 1.2s infinite;
 }
 
-/* radar sweep (hero motif) */
-.radar-sweep {
-  position: absolute;
-  inset: 0;
+/* status dot used with a text label (never color alone) */
+.status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 9999px;
-  background: conic-gradient(
-    from 0deg,
-    color-mix(in srgb, var(--color-beacon) 20%, transparent),
-    transparent 75deg,
-    transparent 360deg
-  );
-  animation: radar-rotate 10s linear infinite;
+  flex: none;
 }
-@keyframes radar-rotate {
-  to {
-    transform: rotate(360deg);
-  }
+
+/* console text */
+.console-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.7;
 }
 
 @media (prefers-reduced-motion: reduce) {

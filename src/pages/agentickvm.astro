@@ -1,82 +1,95 @@
 ---
 import Base from "../layouts/Base.astro";
 import Badge from "../components/Badge.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import AgenticKVMDemo from "../components/AgenticKVMDemo.astro";
+import DemoTimeline from "../components/DemoTimeline.astro";
 
 const useCases = [
-  "Recover a machine that's stopped responding, without a truck roll.",
-  "Datacenter and homelab operations.",
-  "Out-of-band diagnostics.",
-];
-
-const safety = [
-  "Every mutating action (power, boot) requires an operator-approved, signed clearance.",
-  "Read-only observation is separated from control.",
-  "Transport is certificate-pinned.",
-  "Fail-closed on any gap.",
+  "Homelab recovery",
+  "VM host troubleshooting",
+  "Server console operations",
+  "Boot recovery",
+  "Network lockout recovery",
+  "Remote machine triage",
+  "Out-of-band visibility",
+  "Controlled infrastructure ops",
 ];
 ---
 
 <Base
-  title="AgenticKVM — out-of-band infrastructure control for AI agents | Agentic Control Suite"
-  description="AgenticKVM lets an AI agent operate machines at the hardware level — power, boot, console — over Redfish, IPMI, and PiKVM, but only through signed clearances from the control tower."
+  title="AgenticKVM — recover systems when normal access is gone | AgenticSuite"
+  description="AgenticKVM gives agents a controlled path through PiKVM, BMC, Redfish, IPMI, and VM host consoles — to see and operate machines when SSH, APIs, and browsers can't."
 >
-  <section class="relative overflow-hidden border-b border-hairline">
-    <div class="grid-backdrop absolute inset-0" aria-hidden="true"></div>
-    <div class="container-site relative py-20 sm:py-28">
-      <p class="kicker">// ACS-KVM · Out-of-band</p>
-      <div class="mt-4 flex flex-wrap items-center gap-4">
-        <h1 class="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">AgenticKVM</h1>
-        <Badge label="Open source · Beta" />
+  <section class="band-night relative overflow-hidden">
+    <div class="container-site relative pt-16 pb-16 sm:pt-24">
+      <div class="mx-auto max-w-3xl text-center">
+        <Badge label="AgenticKVM · The out-of-band operator · Public beta" tone="beta" dark />
+        <h1 class="mt-6 text-4xl leading-[1.06] font-semibold tracking-tight text-balance text-night-ink sm:text-[3.4rem]">
+          Recover systems when normal access is gone.
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-night-muted">
+          LLMs usually stop when SSH, APIs, or browser access fail. AgenticKVM gives them a controlled path to see and
+          operate the machine through the same recovery surfaces an operator would use.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3.5">
+          <a href="#demo" class="btn btn-primary">Watch a recovery</a>
+          <a href="https://github.com/MahdiHedhli/AgenticKVM" class="btn border-night-hairline text-night-ink hover:border-night-muted">
+            View on GitHub
+          </a>
+        </div>
       </div>
-      <p class="mt-6 text-xl text-beacon sm:text-2xl">Out-of-band infrastructure control for AI agents — safely.</p>
-      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-        AgenticKVM lets an AI agent operate machines at the hardware level — power, boot, console — the way a human
-        operator would through a KVM or BMC. It speaks Redfish, IPMI, and PiKVM, so an agent can recover a wedged
-        server, change a boot device, or observe a console — but only through a signed clearance from the control
-        tower.
-      </p>
+      <div id="demo" class="mx-auto mt-14 max-w-5xl">
+        <AgenticKVMDemo />
+      </div>
     </div>
   </section>
 
-  <section class="border-b border-hairline">
-    <div class="container-site py-20 sm:py-24">
-      <SectionHeading kicker="// Use cases" title="What it's for" />
-      <ul class="mt-10 max-w-2xl space-y-4" role="list">
-        {
-          useCases.map((item) => (
-            <li class="flex gap-4 text-base leading-relaxed text-ink">
-              <span class="mt-2 h-2 w-2 flex-none bg-beacon" aria-hidden="true" />
-              {item}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <section class="border-b border-hairline">
-    <div class="container-site py-20 sm:py-24">
-      <SectionHeading kicker="// Fail-closed" title="How it stays safe" />
-      <ul class="mt-10 grid max-w-4xl gap-4 sm:grid-cols-2" role="list">
-        {
-          safety.map((item) => (
-            <li class="hairline-card flex gap-4 p-5 text-sm leading-relaxed text-ink">
-              <span class="mt-1.5 h-2 w-2 flex-none bg-beacon" aria-hidden="true" />
-              {item}
-            </li>
-          ))
-        }
-      </ul>
+  <section class="border-b border-hairline bg-surface">
+    <div class="container-site grid gap-12 py-16 sm:py-24 lg:grid-cols-2">
+      <div>
+        <SectionHeader
+          eyebrow="From prompt to console"
+          title="Eyes and hands at the console."
+          sub="When the machine won't answer, AgenticKVM works through out-of-band surfaces — PiKVM, BMC, Redfish, IPMI, iLO- and iDRAC-style controllers, and VM host consoles — in compatible environments you already control."
+        />
+        <DemoTimeline
+          class="mt-8"
+          approvalIndex={3}
+          steps={[
+            "Ping and SSH fail — the normal paths are dead",
+            "The agent attaches to the console in observe mode",
+            "It reads the screen and diagnoses the failure",
+            "Keyboard, power, boot, and VM host actions wait for your approval",
+            "The approved action runs, the machine comes back",
+            "An incident summary lands in the audit trail",
+          ]}
+        />
+      </div>
+      <div>
+        <SectionHeader eyebrow="Where it shines" title="Built for the moments dashboards can't reach." />
+        <ul class="mt-8 grid grid-cols-2 gap-3">
+          {
+            useCases.map((u) => (
+              <li class="card px-4 py-3.5 text-[0.9rem] font-medium">{u}</li>
+            ))
+          }
+        </ul>
+        <p class="mt-6 text-sm leading-relaxed text-muted">
+          Observation and control are clearly separated: watching a console is one permission, touching keyboard,
+          power, or boot state is another — and the consequential ones always route through ACT. Compatibility varies
+          by hardware and environment.
+        </p>
+      </div>
     </div>
   </section>
 
   <section>
-    <div class="container-site flex flex-wrap items-center justify-between gap-6 py-20 sm:py-24">
-      <p class="max-w-md text-base leading-relaxed text-muted">
-        The protocol, the clearance flow, and the transports are open for inspection.
+    <div class="container-site flex flex-wrap items-center justify-between gap-6 py-16 sm:py-20">
+      <p class="max-w-lg text-lg font-medium text-balance">
+        When SSH is dead, <span class="text-ember">AgenticKVM can still reach the console you already have.</span>
       </p>
-      <a href="https://github.com/MahdiHedhli/AgenticKVM" class="btn btn-secondary">View AgenticKVM on GitHub</a>
+      <a href="https://github.com/MahdiHedhli/AgenticKVM" class="btn btn-ink">View AgenticKVM on GitHub</a>
     </div>
   </section>
 </Base>

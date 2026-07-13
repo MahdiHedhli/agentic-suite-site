@@ -1,13 +1,25 @@
 ---
 interface Props {
   label: string;
+  tone?: "neutral" | "beta" | "ok" | "review";
+  dark?: boolean;
 }
 
-const { label } = Astro.props;
+const { label, tone = "neutral", dark = false } = Astro.props;
+
+const dotColor = {
+  neutral: "var(--color-muted)",
+  beta: "var(--color-beacon)",
+  ok: "var(--color-ok)",
+  review: "var(--color-beacon)",
+}[tone];
 ---
 
 <span
-  class="inline-flex items-center gap-2 border border-hairline bg-surface px-2.5 py-1 font-mono text-[0.68rem] font-medium tracking-[0.14em] uppercase text-muted"
+  class:list={[
+    "chip",
+    dark && "!border-night-hairline !bg-night-surface !text-night-muted",
+  ]}
 >
-  <span class="h-1.5 w-1.5 rounded-full bg-beacon" aria-hidden="true"></span>{label}
+  <span class="chip-dot" style={`background:${dotColor}`} aria-hidden="true"></span>{label}
 </span>

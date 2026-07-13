@@ -1,0 +1,37 @@
+---
+interface Entry {
+  time: string;
+  text: string;
+}
+interface Props {
+  entries: Entry[];
+  heading?: string;
+  dark?: boolean;
+  class?: string;
+}
+const { entries, heading = "Audit trail", dark = false, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "rounded-2xl border p-4",
+    dark ? "border-night-hairline bg-night-surface text-night-ink" : "border-hairline bg-surface",
+    className,
+  ]}
+>
+  <p class:list={["text-[0.7rem] font-semibold tracking-[0.1em] uppercase", dark ? "text-night-muted" : "text-muted"]}>
+    {heading}
+  </p>
+  <ul class="mt-3 space-y-2.5">
+    {
+      entries.map(({ time, text }) => (
+        <li class="flex items-baseline gap-3 text-[0.76rem]">
+          <span class:list={["console-text flex-none !text-[0.64rem]", dark ? "text-night-muted" : "text-muted"]}>
+            {time}
+          </span>
+          <span class="leading-snug">{text}</span>
+        </li>
+      ))
+    }
+  </ul>
+</div>

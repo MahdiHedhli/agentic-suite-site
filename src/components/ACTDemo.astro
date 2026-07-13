@@ -1,0 +1,141 @@
+---
+import DeviceFrame from "./DeviceFrame.astro";
+import AuditTrail from "./AuditTrail.astro";
+
+/**
+ * Product demonstration: an approval arrives on the phone, the human approves,
+ * a single-use clearance is issued and consumed, the audit trail grows.
+ * 14s CSS loop; reduced-motion rests on the completed state.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+
+const queue = [
+  { label: "Browser submission", active: true },
+  { label: "KVM reboot", active: false },
+  { label: "Hermes workflow", active: false },
+  { label: "MCP tool action", active: false },
+];
+---
+
+<div class:list={["act-demo grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]", className]}>
+  <div class="mx-auto w-full max-w-70">
+    <DeviceFrame
+      kind="phone"
+      label="Product demo: an ACT approval request arrives on the phone, the user approves, and a single-use clearance is issued and consumed"
+    >
+      <div class="bg-bg px-3 pt-2 pb-4">
+        <div class="flex items-center justify-between px-1 pb-2">
+          <span class="flex items-center gap-1.5 text-[0.72rem] font-semibold">
+            <span class="beacon-dot !h-2 !w-2" aria-hidden="true"></span>ACT
+          </span>
+          <span class="text-[0.62rem] font-medium text-muted">4 requests today</span>
+        </div>
+
+        <div class="act-card rounded-2xl border border-hairline bg-surface p-4 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <p class="text-[0.85rem] leading-snug font-semibold">Agent requests permission to submit a browser form</p>
+            <span class="flex flex-none items-center gap-1.5 text-[0.66rem] font-semibold text-muted">
+              <span class="status-dot" style="background:var(--color-beacon)" aria-hidden="true"></span>Medium
+            </span>
+          </div>
+          <dl class="mt-3 space-y-1.5 text-[0.72rem]">
+            <div class="flex justify-between gap-3"><dt class="text-muted">Action</dt><dd class="font-medium">Submit appointment form</dd></div>
+            <div class="flex justify-between gap-3"><dt class="text-muted">Scope</dt><dd class="font-medium">clinics.example only</dd></div>
+            <div class="flex justify-between gap-3"><dt class="text-muted">Expires</dt><dd class="font-medium">5 minutes</dd></div>
+          </dl>
+          <div class="relative mt-4 h-8">
+            <div class="act-buttons absolute inset-0 grid grid-cols-3 gap-2 text-center text-[0.72rem] font-semibold">
+              <span class="act-approve-btn flex items-center justify-center rounded-full bg-ink text-white">Approve</span>
+              <span class="flex items-center justify-center rounded-full border border-hairline text-ink">Modify</span>
+              <span class="flex items-center justify-center rounded-full border border-hairline text-muted">Deny</span>
+            </div>
+            <p class="act-approved absolute inset-0 flex items-center justify-center gap-2 rounded-full bg-ok-soft text-[0.72rem] font-semibold text-ok-deep">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="m2.5 6.5 2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+              Approved · clearance issued
+            </p>
+          </div>
+        </div>
+
+        <p class="act-consumed mt-3 flex items-center gap-2 px-1 text-[0.64rem] text-muted">
+          <span class="status-dot" style="background:var(--color-ok)" aria-hidden="true"></span>
+          Single-use clearance consumed by BrowserBridge
+        </p>
+      </div>
+    </DeviceFrame>
+  </div>
+
+  <div>
+    <p class="text-[0.72rem] font-semibold tracking-[0.1em] text-muted uppercase">Requests route from every surface</p>
+    <ul class="mt-3 flex flex-wrap gap-2">
+      {
+        queue.map(({ label, active }) => (
+          <li
+            class:list={[
+              "rounded-full border px-3 py-1.5 text-[0.76rem] font-medium",
+              active ? "border-beacon/60 bg-beacon/10 text-ember" : "border-hairline bg-surface text-muted",
+            ]}
+          >
+            {label}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-6 space-y-2">
+      <div class="act-audit-wrap">
+        <AuditTrail
+          heading="Audit trail — written as it happens"
+          entries={[
+            { time: "12:04:09", text: "Request received from BrowserBridge" },
+            { time: "12:04:15", text: "Approved by you · single-use clearance issued" },
+            { time: "12:04:17", text: "Clearance consumed · form submitted · task complete" },
+          ]}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .act-demo {
+    --d: 14s;
+  }
+
+  .act-card {
+    animation: act-card var(--d) linear infinite both;
+    opacity: 0;
+  }
+  @keyframes act-card {
+    0%, 4% { opacity: 0; transform: translateY(16px); }
+    9%, 100% { opacity: 1; transform: none; }
+  }
+
+  .act-approve-btn { animation: act-press var(--d) linear infinite both; }
+  @keyframes act-press {
+    0%, 30% { transform: none; }
+    33%, 35% { transform: scale(0.93); }
+    38%, 100% { transform: none; }
+  }
+  .act-buttons { animation: act-buttons var(--d) linear infinite both; }
+  @keyframes act-buttons { 0%, 38% { opacity: 1; } 42%, 100% { opacity: 0; } }
+  .act-approved { animation: act-approved var(--d) linear infinite both; opacity: 0; }
+  @keyframes act-approved { 0%, 40% { opacity: 0; transform: scale(0.95); } 44%, 100% { opacity: 1; transform: none; } }
+
+  .act-consumed { animation: act-consumed var(--d) linear infinite both; opacity: 0; }
+  @keyframes act-consumed { 0%, 55% { opacity: 0; } 60%, 100% { opacity: 1; } }
+
+  /* audit entries appear one by one (act-audit is the fallback for entries beyond the third) */
+  .act-audit-wrap :global(li) { opacity: 0; animation: act-audit var(--d) linear infinite both; }
+  @keyframes act-audit { 0%, 70% { opacity: 0; } 75%, 100% { opacity: 1; } }
+  .act-audit-wrap :global(li:nth-child(1)) { animation-name: act-a1; }
+  .act-audit-wrap :global(li:nth-child(2)) { animation-name: act-a2; }
+  .act-audit-wrap :global(li:nth-child(3)) { animation-name: act-a3; }
+  @keyframes act-a1 { 0%, 12% { opacity: 0; transform: translateY(4px); } 17%, 100% { opacity: 1; transform: none; } }
+  @keyframes act-a2 { 0%, 46% { opacity: 0; transform: translateY(4px); } 51%, 100% { opacity: 1; transform: none; } }
+  @keyframes act-a3 { 0%, 64% { opacity: 0; transform: translateY(4px); } 69%, 100% { opacity: 1; transform: none; } }
+</style>

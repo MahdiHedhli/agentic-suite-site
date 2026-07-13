@@ -1,0 +1,145 @@
+---
+import DeviceFrame from "./DeviceFrame.astro";
+
+/**
+ * Product demonstration: SSH is dead, the agent observes the machine through a
+ * PiKVM/BMC-style console, requests ACT approval, recovers it. 18s CSS loop;
+ * reduced-motion rests on the recovered state.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div class:list={["kvm-demo min-w-0 max-w-full", className]}>
+  <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
+    <!-- terminal: normal access failing -->
+    <DeviceFrame kind="console" label="Terminal showing ping and SSH to pve01 timing out" title="terminal — operator">
+      <div class="console-text min-h-44 p-4 text-night-muted">
+        <p class="text-night-ink">$ ping pve01</p>
+        <p class="kvm-t1">Request timeout for icmp_seq 0</p>
+        <p class="kvm-t2">Request timeout for icmp_seq 1</p>
+        <p class="kvm-t3 mt-2 text-night-ink">$ ssh root@pve01</p>
+        <p class="kvm-t4">ssh: connect to host pve01: Operation timed out</p>
+        <p class="kvm-t5 mt-2 text-[#f0b25e]">→ normal access is gone. Opening console…</p>
+      </div>
+    </DeviceFrame>
+
+    <!-- out-of-band console -->
+    <DeviceFrame
+      kind="console"
+      label="PiKVM/BMC-style console: the agent observes the boot failure, gets ACT approval, and recovers the machine"
+      title="agentickvm — pve01 · PiKVM console"
+    >
+      <div class="relative min-h-44 p-4">
+        <div class="mb-3 flex flex-wrap items-center gap-2">
+          <span class="kvm-observe inline-flex items-center gap-1.5 rounded-full border border-night-hairline px-2.5 py-1 text-[0.66rem] font-semibold text-night-muted">
+            <span class="status-dot" style="background:var(--color-night-muted)" aria-hidden="true"></span>Observe mode
+          </span>
+          <span class="relative inline-flex h-6 items-center">
+            <span class="kvm-st kvm-st-off inline-flex items-center gap-1.5 rounded-full border border-night-hairline px-2.5 py-1 text-[0.66rem] font-semibold text-[#f2a099]">
+              <span class="status-dot" style="background:var(--color-risk)" aria-hidden="true"></span>pve01 · offline
+            </span>
+            <span class="kvm-st kvm-st-on absolute left-0 inline-flex items-center gap-1.5 rounded-full border border-night-hairline px-2.5 py-1 text-[0.66rem] font-semibold whitespace-nowrap text-[#7ee2a0]">
+              <span class="status-dot" style="background:var(--color-ok)" aria-hidden="true"></span>pve01 · back online
+            </span>
+          </span>
+        </div>
+
+        <div class="console-text rounded-xl border border-night-hairline bg-black/30 p-3 text-night-muted">
+          <p class="kvm-c1">Booting kernel 6.8.4-3…</p>
+          <p class="kvm-c2 text-[#f2a099]">ERROR: root device not found</p>
+          <p class="kvm-c3 text-[#f2a099]">Dropped to emergency shell (initramfs)</p>
+          <p class="kvm-c4 mt-1 text-night-ink">agent: likely stale initramfs from last kernel update.</p>
+          <p class="kvm-c5 text-night-ink">agent: requesting approval to select previous kernel…</p>
+          <p class="kvm-c6 mt-1">→ approved · keys sent: ↑ ↑ Enter</p>
+          <p class="kvm-c7">Booting kernel 6.8.4-2 (previous)…</p>
+          <p class="kvm-c8 text-[#7ee2a0]">pve01 login: _</p>
+        </div>
+
+        <!-- ACT approval card -->
+        <div class="kvm-act absolute right-3 bottom-3 w-56 rounded-2xl border border-hairline bg-surface p-3 text-ink shadow-2xl">
+          <p class="flex items-center gap-1.5 text-[0.66rem] font-semibold">
+            <span class="beacon-dot !h-1.5 !w-1.5" aria-hidden="true"></span> ACT · approval request
+          </p>
+          <p class="mt-1 text-[0.72rem] leading-snug">Send keyboard input to pve01 console (boot recovery)?</p>
+          <p class="mt-1 flex items-center gap-1.5 text-[0.62rem] text-muted">
+            <span class="status-dot" style="background:var(--color-risk)" aria-hidden="true"></span>High risk · console keys only · single use
+          </p>
+          <p class="kvm-act-approved mt-2 flex items-center gap-1.5 rounded-full bg-ok-soft px-2.5 py-1 text-[0.66rem] font-semibold text-ok-deep">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="m2.5 6.5 2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+            Approved from your phone
+          </p>
+        </div>
+      </div>
+    </DeviceFrame>
+  </div>
+
+  <p class="kvm-audit mt-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-night-hairline bg-night-surface px-3 py-1.5 text-[0.7rem] text-night-muted">
+    <span class="console-text !text-[0.62rem]">03:12:44</span>
+    Recovered · incident summary written · every action recorded
+  </p>
+</div>
+
+<style>
+  .kvm-demo {
+    --d: 18s;
+  }
+  .kvm-demo [class*="kvm-t"],
+  .kvm-demo [class*="kvm-c"],
+  .kvm-demo .kvm-act,
+  .kvm-demo .kvm-audit,
+  .kvm-demo .kvm-act-approved {
+    opacity: 0;
+  }
+
+  .kvm-t1 { animation: kw-t1 var(--d) linear infinite both; }
+  .kvm-t2 { animation: kw-t2 var(--d) linear infinite both; }
+  .kvm-t3 { animation: kw-t3 var(--d) linear infinite both; }
+  .kvm-t4 { animation: kw-t4 var(--d) linear infinite both; }
+  .kvm-t5 { animation: kw-t5 var(--d) linear infinite both; }
+  @keyframes kw-t1 { 0%, 2% { opacity: 0; } 4%, 100% { opacity: 1; } }
+  @keyframes kw-t2 { 0%, 5% { opacity: 0; } 7%, 100% { opacity: 1; } }
+  @keyframes kw-t3 { 0%, 8% { opacity: 0; } 10%, 100% { opacity: 1; } }
+  @keyframes kw-t4 { 0%, 11% { opacity: 0; } 13%, 100% { opacity: 1; } }
+  @keyframes kw-t5 { 0%, 15% { opacity: 0; } 17%, 100% { opacity: 1; } }
+
+  .kvm-observe { animation: kw-observe var(--d) linear infinite both; opacity: 0; }
+  @keyframes kw-observe { 0%, 19% { opacity: 0; } 22%, 100% { opacity: 1; } }
+
+  .kvm-c1 { animation: kw-c1 var(--d) linear infinite both; }
+  .kvm-c2 { animation: kw-c2 var(--d) linear infinite both; }
+  .kvm-c3 { animation: kw-c3 var(--d) linear infinite both; }
+  .kvm-c4 { animation: kw-c4 var(--d) linear infinite both; }
+  .kvm-c5 { animation: kw-c5 var(--d) linear infinite both; }
+  .kvm-c6 { animation: kw-c6 var(--d) linear infinite both; }
+  .kvm-c7 { animation: kw-c7 var(--d) linear infinite both; }
+  .kvm-c8 { animation: kw-c8 var(--d) linear infinite both; }
+  @keyframes kw-c1 { 0%, 23% { opacity: 0; } 25%, 100% { opacity: 1; } }
+  @keyframes kw-c2 { 0%, 26% { opacity: 0; } 28%, 100% { opacity: 1; } }
+  @keyframes kw-c3 { 0%, 29% { opacity: 0; } 31%, 100% { opacity: 1; } }
+  @keyframes kw-c4 { 0%, 34% { opacity: 0; } 37%, 100% { opacity: 1; } }
+  @keyframes kw-c5 { 0%, 39% { opacity: 0; } 42%, 100% { opacity: 1; } }
+  @keyframes kw-c6 { 0%, 60% { opacity: 0; } 63%, 100% { opacity: 1; } }
+  @keyframes kw-c7 { 0%, 66% { opacity: 0; } 69%, 100% { opacity: 1; } }
+  @keyframes kw-c8 { 0%, 74% { opacity: 0; } 78%, 100% { opacity: 1; } }
+
+  .kvm-act { animation: kw-act var(--d) linear infinite both; }
+  @keyframes kw-act {
+    0%, 44% { opacity: 0; transform: translateY(12px); }
+    48%, 100% { opacity: 1; transform: none; }
+  }
+  .kvm-act-approved { animation: kw-act-approved var(--d) linear infinite both; }
+  @keyframes kw-act-approved { 0%, 55% { opacity: 0; transform: scale(0.9); } 58%, 100% { opacity: 1; transform: none; } }
+
+  .kvm-st-off { animation: kw-st-off var(--d) linear infinite both; opacity: 1; }
+  .kvm-st-on { animation: kw-st-on var(--d) linear infinite both; }
+  @keyframes kw-st-off { 0%, 80% { opacity: 1; } 84%, 100% { opacity: 0; } }
+  @keyframes kw-st-on { 0%, 82% { opacity: 0; } 86%, 100% { opacity: 1; } }
+
+  .kvm-audit { animation: kw-audit var(--d) linear infinite both; }
+  @keyframes kw-audit { 0%, 88% { opacity: 0; } 92%, 100% { opacity: 1; } }
+</style>

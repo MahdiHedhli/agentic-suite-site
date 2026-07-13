@@ -1,0 +1,90 @@
+---
+/**
+ * Premium system flow: agent runtime → Hermes → ACT → action surfaces → audit.
+ * Readable by non-technical visitors; soft connectors, glass nodes.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "relative overflow-hidden rounded-3xl border border-hairline bg-gradient-to-br from-white via-bg to-[#f3efe6] p-6 sm:p-10",
+    className,
+  ]}
+  role="img"
+  aria-label="Flow diagram: an agent runtime connects to ACT approvals — directly, over MCP, or through Hermes — and ACT gates BrowserBridge, AgenticKVM, and MCP tools, with every step recorded in the audit trail"
+>
+  <div class="grid items-center gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1.1fr_auto_1fr] lg:gap-3">
+    <div class="card-glass p-5 text-center">
+      <p class="text-[0.95rem] font-semibold">Agent runtime</p>
+      <p class="mt-1 text-[0.75rem] text-muted">Claude Code, local agents, automations</p>
+    </div>
+
+    <svg
+      width="34"
+      height="14"
+      viewBox="0 0 34 14"
+      fill="none"
+      aria-hidden="true"
+      class="mx-auto rotate-90 text-ember/60 lg:rotate-0"
+    >
+      <path d="M1 7h28m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+    </svg>
+
+    <div class="card-glass p-5 text-center">
+      <p class="text-[0.95rem] font-semibold">Hermes</p>
+      <p class="mt-1 text-[0.75rem] text-muted">One integration path — or connect directly over MCP</p>
+    </div>
+
+    <svg
+      width="34"
+      height="14"
+      viewBox="0 0 34 14"
+      fill="none"
+      aria-hidden="true"
+      class="mx-auto rotate-90 text-ember/60 lg:rotate-0"
+    >
+      <path d="M1 7h28m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+    </svg>
+
+    <div
+      class="rounded-3xl border border-beacon/40 bg-beacon/10 p-5 text-center shadow-[0_20px_50px_-25px_rgba(245,166,35,0.5)]"
+    >
+      <p class="flex items-center justify-center gap-2 text-[0.95rem] font-semibold">
+        <span class="beacon-dot !h-2 !w-2" aria-hidden="true"></span>ACT approvals
+      </p>
+      <p class="mt-1 text-[0.75rem] font-medium text-ember">You approve what matters</p>
+    </div>
+
+    <svg
+      width="34"
+      height="14"
+      viewBox="0 0 34 14"
+      fill="none"
+      aria-hidden="true"
+      class="mx-auto rotate-90 text-ember/60 lg:rotate-0"
+    >
+      <path d="M1 7h28m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+    </svg>
+
+    <div class="space-y-2.5">
+      {
+        ["BrowserBridge", "AgenticKVM", "MCP tools"].map((s) => (
+          <div class="card-glass px-4 py-2.5 text-center text-[0.85rem] font-semibold">{s}</div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="mt-7 flex justify-center">
+    <p class="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-4 py-1.5 text-[0.78rem] text-muted">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="text-ember">
+        <path d="M3 8.5 6 11.5 13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+      Every request, decision, and action lands in the audit trail
+    </p>
+  </div>
+</div>

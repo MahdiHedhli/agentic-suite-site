@@ -1,0 +1,86 @@
+---
+/**
+ * Generic CSS device frames — no vendor hardware, no copyrighted UI.
+ * kind: "browser" | "phone" | "console"
+ */
+interface Props {
+  kind: "browser" | "phone" | "console";
+  label: string;
+  address?: string;
+  title?: string;
+  class?: string;
+}
+
+const { kind, label, address, title, class: className } = Astro.props;
+---
+
+{
+  kind === "browser" && (
+    <figure class:list={["card overflow-hidden", className]} role="img" aria-label={label}>
+      <div class="flex items-center gap-3 border-b border-hairline bg-bg/60 px-4 py-2.5">
+        <span class="flex gap-1.5" aria-hidden="true">
+          <span class="h-2.5 w-2.5 rounded-full bg-hairline" />
+          <span class="h-2.5 w-2.5 rounded-full bg-hairline" />
+          <span class="h-2.5 w-2.5 rounded-full bg-hairline" />
+        </span>
+        {address && (
+          <span class="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-hairline bg-surface px-3 py-1 text-[0.7rem] text-muted">
+            <svg width="9" height="10" viewBox="0 0 9 10" fill="none" aria-hidden="true" class="flex-none">
+              <rect x="1" y="4" width="7" height="5" rx="1" stroke="currentColor" />
+              <path d="M2.5 4V3a2 2 0 0 1 4 0v1" stroke="currentColor" />
+            </svg>
+            <span class="min-w-0 flex-1 truncate">{address}</span>
+          </span>
+        )}
+      </div>
+      <div class="relative">
+        <slot />
+      </div>
+      <figcaption class="sr-only">{label}</figcaption>
+    </figure>
+  )
+}
+
+{
+  kind === "phone" && (
+    <figure
+      class:list={[
+        "relative overflow-hidden rounded-[2.2rem] border border-ink/10 bg-surface shadow-[0_30px_70px_-30px_rgba(22,25,31,0.4)]",
+        className,
+      ]}
+      role="img"
+      aria-label={label}
+    >
+      <div class="flex justify-center pt-3 pb-1" aria-hidden="true">
+        <span class="h-1.5 w-16 rounded-full bg-ink/10" />
+      </div>
+      <div class="relative">
+        <slot />
+      </div>
+      <figcaption class="sr-only">{label}</figcaption>
+    </figure>
+  )
+}
+
+{
+  kind === "console" && (
+    <figure
+      class:list={["overflow-hidden rounded-3xl border border-night-hairline bg-night text-night-ink", className]}
+      role="img"
+      aria-label={label}
+    >
+      <div class="flex items-center gap-3 border-b border-night-hairline bg-night-surface/80 px-4 py-2.5">
+        <span class="flex gap-1.5" aria-hidden="true">
+          <span class="h-2.5 w-2.5 rounded-full bg-night-hairline" />
+          <span class="h-2.5 w-2.5 rounded-full bg-night-hairline" />
+          <span class="h-2.5 w-2.5 rounded-full bg-night-hairline" />
+        </span>
+        {title && <span class="console-text truncate text-night-muted">{title}</span>}
+      </div>
+      <div class="relative">
+        <slot />
+      </div>
+      <figcaption class="sr-only">{label}</figcaption>
+    </figure>
+  )
+}

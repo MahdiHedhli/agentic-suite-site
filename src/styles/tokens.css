@@ -1,17 +1,34 @@
 /*
- * Design tokens — Agentic Control Suite
- * Dark, high-contrast, single beacon accent (control-tower amber).
+ * Design tokens — AgenticSuite
+ * Light-first, premium, calm. Warm paper neutrals, one amber brand accent,
+ * deep night palette reserved for console scenes and contrast bands.
  */
 @theme {
-  /* palette */
-  --color-bg: #0a0e14;
-  --color-surface: #111721;
-  --color-ink: #e6edf3;
-  --color-muted: #8b949e;
-  --color-beacon: #f5a623;
-  --color-hairline: #1e2733;
+  /* light surfaces */
+  --color-bg: #f7f6f3;
+  --color-surface: #ffffff;
+  --color-ink: #16191f;
+  --color-muted: #575e69;
+  --color-hairline: #e8e5df;
+
+  /* brand accent */
+  --color-beacon: #f5a623; /* fills, highlights, CTAs (with dark text) */
+  --color-ember: #8f5300; /* accessible amber for small text on light */
+
+  /* dark contrast bands + console scenes */
+  --color-night: #0a0e14;
+  --color-night-surface: #131a26;
+  --color-night-ink: #e6edf3;
+  --color-night-muted: #9aa4b1;
+  --color-night-hairline: #232c3b;
+
+  /* status (never color-alone) */
+  --color-ok: #1a7f37;
+  --color-ok-deep: #155d29;
+  --color-ok-soft: #e9f3ec;
+  --color-risk: #b3362c;
 
   /* type */
   --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }

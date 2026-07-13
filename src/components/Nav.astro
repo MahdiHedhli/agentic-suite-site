@@ -1,46 +1,53 @@
 ---
-const { pathname } = Astro.url;
-
 const links = [
-  { href: "/act", label: "ACT" },
-  { href: "/agentickvm", label: "AgenticKVM" },
-  { href: "/browserbridge", label: "BrowserBridge" },
+  { href: "/#products", label: "Product" },
+  { href: "/#demos", label: "Demos" },
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/#security", label: "Security" },
+  { href: "/#developers", label: "Developers" },
+  { href: "https://github.com/MahdiHedhli", label: "GitHub" },
 ];
-
-const isActive = (href: string) => pathname === href || pathname === `${href}/`;
 ---
 
-<header class="sticky top-0 z-50 border-b border-hairline bg-bg/85 backdrop-blur">
-  <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 px-3 sm:px-6" aria-label="Main">
-    <a
-      href="/"
-      class="flex items-center gap-2.5 font-mono text-[0.72rem] font-medium tracking-[0.14em] uppercase transition-colors hover:text-beacon sm:text-[0.78rem] sm:tracking-[0.18em]"
-    >
+<header class="sticky top-0 z-50 border-b border-hairline bg-bg/80 backdrop-blur-xl">
+  <nav class="container-site flex h-16 items-center justify-between gap-3" aria-label="Main">
+    <a href="/" class="flex items-center gap-2.5 text-[1.02rem] font-semibold tracking-tight">
       <span class="beacon-dot" aria-hidden="true"></span>
-      <span class="hidden md:inline">Agentic Control Suite</span>
-      <span class="md:hidden">ACS</span>
+      AgenticSuite
     </a>
-    <div class="flex items-center font-mono text-[0.62rem] tracking-[0.02em] uppercase sm:gap-2 sm:text-[0.72rem] sm:tracking-[0.08em]">
+
+    <div class="hidden items-center gap-1 md:flex">
       {
         links.map(({ href, label }) => (
           <a
             href={href}
-            aria-current={isActive(href) ? "page" : undefined}
-            class:list={[
-              "px-1 py-1.5 transition-colors hover:text-beacon sm:px-2",
-              isActive(href) ? "text-beacon" : "text-muted",
-            ]}
+            class="rounded-full px-3.5 py-2 text-[0.9rem] font-medium text-muted transition-colors hover:bg-surface hover:text-ink"
           >
             {label}
           </a>
         ))
       }
-      <a
-        href="https://github.com/MahdiHedhli"
-        class="px-1 py-1.5 text-muted transition-colors hover:text-beacon sm:px-2"
-      >
-        GitHub
-      </a>
+      <a href="/#demos" class="btn btn-ink ml-2 !px-4 !py-2 !text-[0.85rem]">Watch it work</a>
     </div>
+
+    <details class="relative md:hidden">
+      <summary
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-hairline bg-surface [&::-webkit-details-marker]:hidden"
+        aria-label="Menu"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+      </summary>
+      <div class="card absolute right-0 mt-3 flex w-56 flex-col gap-1 p-2 shadow-xl">
+        {
+          links.map(({ href, label }) => (
+            <a href={href} class="rounded-xl px-3.5 py-2.5 text-[0.92rem] font-medium text-ink hover:bg-bg">
+              {label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
   </nav>
 </header>

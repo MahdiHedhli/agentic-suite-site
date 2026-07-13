@@ -19,7 +19,9 @@ npm run build    # static output in dist/
 ```
 src/
   layouts/Base.astro     # shared shell: head, nav, footer, meta/OG
-  components/            # Nav, Footer, ProductCard, Badge, SectionHeading
+  components/            # Nav, Footer, SectionHeader, ProductCard, Badge,
+                         # DeviceFrame, demo components (BrowserBridge/KVM/ACT),
+                         # StatusRail, AuditTrail, IntegrationChip, SecurityPill
   pages/                 # index, act, agentickvm, browserbridge, 404
   styles/tokens.css      # design tokens (palette, type)
   styles/global.css      # base styles + shared component classes
